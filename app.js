@@ -3,16 +3,15 @@ const app = express();
 const morgan = require('morgan'); //console.log the request in terminal while using postman, just a package
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const password = config.password;
-require('dotenv').config()
+require('dotenv').config()//package use it to get data from .env file by process.env.something
 
 const productRouters = require('./api/routes/products'); // require the module in this file route;
 const orderRouters = require('./api/routes/orders'); // require the module in this file route;
 
-mongoose.connect(`mongodb+srv://jshen9085:${process.env.password}@cluster0-h4nd4.mongodb.net/test?retryWrites=true`)
+mongoose.connect(`mongodb+srv://jshen9085:${process.env.password}@cluster0-h4nd4.mongodb.net/test?retryWrites=true`, { useNewUrlParser: true, useCreateIndex: true })
 
-app.use(morgan('dev')) //execute line 3
-app.use(bodyParser.urlencoded({extended: false})); //bodyParser need to be in front of Routers
+app.use(morgan('dev')) //execute line 6
+app.use(bodyParser.urlencoded({extended: true})); //bodyParser need to be in front of Routers
 app.use(bodyParser.json());//bodyParser need to be in front of Routers
 
 //server send response header to browser and let clients have access
