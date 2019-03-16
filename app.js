@@ -4,11 +4,12 @@ const morgan = require('morgan'); //console.log the request in terminal while us
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const password = config.password;
+require('dotenv').config()
 
 const productRouters = require('./api/routes/products'); // require the module in this file route;
 const orderRouters = require('./api/routes/orders'); // require the module in this file route;
 
-mongoose.connect(`mongodb+srv://jshen9085:${password}@cluster0-h4nd4.mongodb.net/test?retryWrites=true`)
+mongoose.connect(`mongodb+srv://jshen9085:${process.env.password}@cluster0-h4nd4.mongodb.net/test?retryWrites=true`)
 
 app.use(morgan('dev')) //execute line 3
 app.use(bodyParser.urlencoded({extended: false})); //bodyParser need to be in front of Routers
