@@ -9,6 +9,7 @@ const Product = require('../models/product')
 router.get('/', (req, res, next) => {
   Order.find()
   .select("quantity product _id")
+  .populate('product') //get the detail information of product instead of just ID, adding second argument .populate('product', 'name') will add name only 
   .exec()
   .then(orders => {
     res.status(200).json(orders)
