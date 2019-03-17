@@ -3,10 +3,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Order = require('../models/order');
-const Product = require('../models/product')
+const Product = require('../models/product');
+const checkAuth = require('../auth/check-auth');
+
 
 //get is tested
-router.get('/', (req, res, next) => {
+router.get('/', checkAuth, (req, res, next) => {
   Order.find()
   .select("quantity product _id")
   .populate('product') //get the detail information of product instead of just ID, adding second argument .populate('product', 'name') will add name only
@@ -20,7 +22,7 @@ router.get('/', (req, res, next) => {
 });
 
 //post is tested
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
   Product.findById(req.body.productId)
     .then(product => {
       if(!product){
@@ -55,7 +57,7 @@ router.post('/', (req, res, next) => {
 });
 
 //get by id is tested
-router.get('/:id', (req, res, next) => {
+router.get('/:id', checkAuth, (req, res, next) => {
   const id = req.params.id;
   Order.findById({_id: id})
   .select("quantity product _id")
@@ -77,7 +79,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 //delete is tested
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
   const id = req.params.id;
   Order.remove({_id: id})
   .exec()

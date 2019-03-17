@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Product = require('../models/product');
+const checkAuth = require('../auth/check-auth');
 
 //get is tested
 router.get('/', (req, res, next) => {
@@ -20,7 +21,7 @@ router.get('/', (req, res, next) => {
 })  //first argument is URL
 
 //post is tested
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
   const product = new Product({
     _id: new mongoose.Types.ObjectId(), //ObjectId make the id as unique;
     name: req.body.name,
@@ -65,7 +66,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 //patch is tested
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', checkAuth, (req, res, next) => {
   const id = req.params.id;
 
   const updateOps = {};
@@ -88,7 +89,7 @@ router.patch('/:id', (req, res, next) => {
 })
 
 //delete is tested
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', checkAuth, (req, res, next) => {
   const id = req.params.id;
   Product.remove({_id: id})
   .exec()
