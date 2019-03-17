@@ -7,6 +7,7 @@ require('dotenv').config()//package use it to get data from .env file by process
 
 const productRouters = require('./api/routes/products'); // require the module in this file route;
 const orderRouters = require('./api/routes/orders'); // require the module in this file route;
+const userRouters = require('./api/routes/user');
 
 mongoose.connect(`mongodb+srv://jshen9085:${process.env.password}@cluster0-h4nd4.mongodb.net/test?retryWrites=true`, { useNewUrlParser: true, useCreateIndex: true })
 
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 //reference: https://expressjs.com/en/guide/writing-middleware.html
 app.use('/products', productRouters); //request match the 1st argument will processed by the 2nd argument; or for certain route, jump to the login in that folder
 app.use('/orders', orderRouters); //same as above line (line 8)
+app.use('/user', userRouters); 
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
