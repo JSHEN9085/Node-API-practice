@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 //app.use is a middleware, Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle.
 //reference: https://expressjs.com/en/guide/writing-middleware.html
-app.use('/products', productRouters); //request match the 1st argument will processed by the 2nd argument;
+app.use('/products', productRouters); //request match the 1st argument will processed by the 2nd argument; or for certain route, jump to the login in that folder
 app.use('/orders', orderRouters); //same as above line (line 8)
 
 app.use((req, res, next) => {
