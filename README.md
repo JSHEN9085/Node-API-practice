@@ -15,3 +15,9 @@ steps:
 4. add API folder and add products.js
 
 5. in app.js app.use is middleware and pass the request to productRouters, and api -> routes -> products will process request accordingly
+
+test:
+reference: https://puppet.com/docs/pipelines-for-apps/enterprise/application-nodejs-mocha.html
+
+npm install -g mocha
+npm install request --save

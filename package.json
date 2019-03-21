@@ -4,7 +4,7 @@
   "description": "Node API warm up",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon server.js"
   },
   "author": "Jun Jian Shen",
@@ -16,9 +16,12 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.19",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "should": "^13.2.3",
+    "supertest": "^4.0.2"
   }
 }
